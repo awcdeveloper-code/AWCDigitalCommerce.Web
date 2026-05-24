@@ -1,0 +1,75 @@
+﻿@model AWCDigitalCommerce.Web.Models.User
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-card {
+            background: darkblue;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 300px;
+        }
+        .login-card h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+        }
+        .validation-summary-errors {
+            color: red;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            document.getElementById("Username").focus();
+        };
+    </script>
+</head>
+<body>
+    <div class="login-card">
+        
+        <h2 style="color: white;">Tickets Controller Web</h2>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "validation-summary-errors" })
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.UserPIN, "CÓDIGO PIN", new { @class = "form-label", style = "color:white;" })
+                @Html.TextBoxFor(m => m.UserPIN, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserPIN, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4">
+                @Html.LabelFor(m => m.UserPIN, "PALABRA CLAVE", new { @class = "form-label", style = "color:white;" })
+                @Html.PasswordFor(m => m.UserPW, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserPW, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-outline-success w-100">Validar</button>
+        }
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
